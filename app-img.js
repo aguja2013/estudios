@@ -1,15 +1,9 @@
-ar request   = require('request'),
+var request   = require('request'),
 	cheerio  = require('cheerio'),
-	fs 		 = require('fs'),
-	mongoose = require('mongoose');
+	fs 		 = require('fs');
+	
 
-	mongoose.connect('mongodb://localhost/links');
-
-	var datosModel = mongoose.model('datos',{
-		titulo: String,
-		imagen: String
-	});
-
+	
 request({url: 'http://thehackernews.com/', encoding: 'binary'}, function(err, resp, body){
 	if(!err && resp.statusCode == 200){
 		var $ = cheerio.load(body);
@@ -20,22 +14,7 @@ request({url: 'http://thehackernews.com/', encoding: 'binary'}, function(err, re
 
 			var file = fs.createWriteStream('img/'+i+'.jpg');
 			request(imagen).pipe(file);
-
-			var datos = new datosModel({
-				titulo: titulo,
-				imagen: i+'.jpg'
-			});
-
-			datos.save(function(error){
-				if(error){
-					console.log(error);
-				}
-			})
-
-
 			i = i+1;
-		});
-
-		console.log('Fin');
+		});		
 	}
 });
