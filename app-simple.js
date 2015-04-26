@@ -11,3 +11,13 @@ var request = require('request'),
 
 		}
 	});
+
+
+	// Este es un ejemplo simple, sirve para jalar del blog(url) los títulos que se
+	// encuentran en un <a> dentro de un <h2> dentro de un contenedor con clase .hnews dentro
+	// de otro con clase .blog-post.
+	// Ejecutar npm install request y npm install cheerio
+	// Ejecutar en consola: node app-simple
+
+	// ****	ESTE EJEMPLO ESTÁ BASADO DEL SIGUIENTE TUTORIAL   
+	// https://www.youtube.com/watch?v=Spjt66m3RtA  ****
